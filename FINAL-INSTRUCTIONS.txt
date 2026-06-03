@@ -1,0 +1,29 @@
+INV WHY FINAL UPDATED PACKAGE
+
+Upload to website/GitHub:
+- Upload the files in the root of this ZIP to your hosting repository.
+- Keep the folder named .well-known exactly as-is.
+- The required Digital Asset Links file is here:
+  .well-known/assetlinks.json
+
+Android package files:
+- The Android files are inside:
+  android-package/
+- Google Play upload file:
+  android-package/INV WHY.aab
+- APK test file:
+  android-package/INV WHY.apk
+- Keep these private and safe:
+  android-package/signing.keystore
+  android-package/signing-key-info.txt
+
+Important:
+- After upload, this URL must open JSON:
+  https://your-domain.com/.well-known/assetlinks.json
+
+PWA/TWA fixes included:
+- PNG icons added/confirmed in manifest.
+- Manifest linked in HTML pages.
+- Theme color and Apple touch icon added.
+- Service worker registration included.
+- Service worker cache updated.

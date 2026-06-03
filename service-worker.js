@@ -1,25 +1,33 @@
-const CACHE_NAME = 'inv-why-news-pwa-fixed-v4';
+const CACHE_NAME = 'inv-why-pages-fix-v6';
+
 const APP_SHELL = [
   './',
-  'index.html',
-  'about.html',
-  'contact.html',
-  'privacy.html',
-  'style.css',
-  'script.js',
-  'manifest.json',
-  'icon-192.png',
-  'icon-512.png',
-  'icon-192.svg',
-  'icon-512.svg',
-  'logo.png',
-  'about-hero-dubai.jpg',
-  'company-profile.pdf',
-  'properties-from-sheet.json'
+  './index.html',
+  './about.html',
+  './contact.html',
+  './privacy.html',
+  './style.css',
+  './script.js',
+  './manifest.json',
+  './icon-192.png',
+  './icon-512.png',
+  './icon-192.svg',
+  './icon-512.svg',
+  './logo.png',
+  './about-hero-dubai.jpg',
+  './company-profile.pdf',
+  './properties-from-sheet.json',
+  './.well-known/assetlinks.json'
 ];
 
 self.addEventListener('install', event => {
-  event.waitUntil(caches.open(CACHE_NAME).then(cache => cache.addAll(APP_SHELL)));
+  event.waitUntil(
+    caches.open(CACHE_NAME).then(async cache => {
+      await Promise.allSettled(
+        APP_SHELL.map(url => cache.add(url))
+      );
+    })
+  );
   self.skipWaiting();
 });
 
@@ -34,9 +42,35 @@ self.addEventListener('activate', event => {
 
 self.addEventListener('fetch', event => {
   if (event.request.method !== 'GET') return;
+
+  const request = event.request;
+
+  // Network-first for page navigation so About/Contact do not get stuck on an old cached index.
+  if (request.mode === 'navigate' || request.headers.get('accept')?.includes('text/html')) {
+    event.respondWith(
+      fetch(request)
+        .then(response => {
+          const copy = response.clone();
+          caches.open(CACHE_NAME).then(cache => cache.put(request, copy));
+          return response;
+        })
+        .catch(async () => {
+          const cached = await caches.match(request);
+          return cached || caches.match('./index.html');
+        })
+    );
+    return;
+  }
+
+  // Cache-first for static files, with network fallback.
   event.respondWith(
-    caches.match(event.request).then(cached =>
-      cached || fetch(event.request).catch(() => caches.match('index.html'))
-    )
+    caches.match(request).then(cached => {
+      if (cached) return cached;
+      return fetch(request).then(response => {
+        const copy = response.clone();
+        caches.open(CACHE_NAME).then(cache => cache.put(request, copy));
+        return response;
+      });
+    })
   );
 });

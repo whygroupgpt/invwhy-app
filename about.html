@@ -4,23 +4,23 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>About Us | Inv Why Real Estate</title>
-<link href="style.css" rel="stylesheet"/>
+<link href="./style.css" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
-    <link rel="manifest" href="manifest.json">
+    <link rel="manifest" href="./manifest.json">
     <meta name="theme-color" content="#000000">
-    <link rel="apple-touch-icon" href="icon-192.png">
+    <link rel="apple-touch-icon" href="./icon-192.png">
 </head>
 <body>
 <nav class="navbar">
 <div class="nav-container">
-<a class="nav-logo" href="index.html">
-<img alt="Inv Why Real Estate Logo" src="logo.png"/>
+<a class="nav-logo" href="./index.html">
+<img alt="Inv Why Real Estate Logo" src="./logo.png"/>
 </a>
 <ul class="nav-links">
-<li><a href="index.html">Home</a></li>
-<li><a href="index.html#offplan">Properties</a></li>
-<li><a class="active" href="about.html">About</a></li>
-<li><a href="contact.html">Contact Us</a></li>
+<li><a href="./index.html">Home</a></li>
+<li><a href="./index.html#offplan">Properties</a></li>
+<li><a class="active" href="./about.html">About</a></li>
+<li><a href="./contact.html">Contact Us</a></li>
 </ul>
 <div class="hamburger">
 <span></span>
@@ -70,7 +70,7 @@
 <span class="eyebrow about-eyebrow">Who We Are</span>
 <h2>A cleaner real estate experience for Dubai buyers and investors.</h2>
 <p>INV Why Real Estate is part of Why Group and helps clients explore Dubai opportunities with clarity, speed, and simple communication.</p>
-<a class="btn-primary" href="contact.html">Contact Us</a>
+<a class="btn-primary" href="./contact.html">Contact Us</a>
 </div>
 
 <div class="about-fresh-card reveal-item">
@@ -109,8 +109,8 @@
 </div>
 <div class="profile-mini-panel profile-actions-only">
 <div class="profile-actions clean-profile-actions">
-<a class="btn-primary profile-btn" href="company-profile.pdf" target="_blank" rel="noopener noreferrer">Open Profile</a>
-<a class="profile-download-btn" href="company-profile.pdf" download>Download PDF</a>
+<a class="btn-primary profile-btn" href="./company-profile.pdf" target="_blank" rel="noopener noreferrer">Open Profile</a>
+<a class="profile-download-btn" href="./company-profile.pdf" download>Download PDF</a>
 </div>
 </div>
 </div>
@@ -121,15 +121,15 @@
 <footer>
 <div class="footer-container">
 <div class="footer-brand">
-<img alt="Inv Why Real Estate" class="footer-logo" src="logo.png"/>
+<img alt="Inv Why Real Estate" class="footer-logo" src="./logo.png"/>
 <p>Your trusted partner in real estate investment across the UAE.</p>
 </div>
 <div class="footer-links">
 <h4>Quick Links</h4>
 <ul>
-<li><a href="index.html">Home</a></li>
-<li><a href="about.html">About</a></li>
-<li><a href="contact.html">Contact Us</a></li>
+<li><a href="./index.html">Home</a></li>
+<li><a href="./about.html">About</a></li>
+<li><a href="./contact.html">Contact Us</a></li>
 </ul>
 </div>
 <div class="footer-contact">
@@ -140,9 +140,23 @@
 </div>
 <div class="footer-bottom">
 <p>© 2026 Inv Why Real Estate. All rights reserved.</p>
-<p class="footer-privacy"><a href="privacy.html">Privacy Policy</a></p>
+<p class="footer-privacy"><a href="./privacy.html">Privacy Policy</a></p>
 </div>
 </footer>
-<script src="script.js"></script>
+<script src="./script.js"></script>
+
+<script>
+  window.addEventListener("load", async () => {
+    if ("serviceWorker" in navigator) {
+      try {
+        const reg = await navigator.serviceWorker.register("./service-worker.js");
+        if (reg && reg.update) await reg.update();
+      } catch (error) {
+        console.warn("Service worker update failed:", error);
+      }
+    }
+  });
+</script>
+
 </body>
 </html>
