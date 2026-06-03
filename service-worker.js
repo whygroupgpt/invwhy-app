@@ -1,4 +1,4 @@
-const CACHE_NAME = 'inv-why-pages-fix-v6';
+const CACHE_NAME = 'inv-why-news-home-only-v7';
 
 const APP_SHELL = [
   './',
