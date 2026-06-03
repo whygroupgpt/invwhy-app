@@ -797,7 +797,7 @@ function renderProperties(filter = 'all') {
                     <span>${formatFeature(prop.sqft, ' sqft')}</span>
                 </div>
                 <div class="property-completion">${prop.type || 'Property'}${prop.period ? ` / ${prop.period}` : ''}</div>
-                <a class="property-details-btn" href="${getWhatsAppLink(prop)}" target="_blank" rel="noopener noreferrer">More Details</a>
+                <button class="property-details-btn" type="button" data-property-id="${prop.id}">More Details</button>
             </div>
         `;
 
@@ -826,6 +826,140 @@ if (offplanGrid) {
         });
     });
 }
+
+
+// ==================== PROPERTY DETAILS MODAL ====================
+function escapeHtml(value) {
+    return String(value ?? '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+}
+
+function modalValue(value, fallback = 'On request') {
+    if (value === null || value === undefined || value === '') return fallback;
+    return escapeHtml(value);
+}
+
+function amenityChips(value) {
+    if (!value) return '<p class="property-modal-empty">Amenities available on request.</p>';
+    const items = String(value)
+        .split(',')
+        .map(item => item.trim())
+        .filter(Boolean)
+        .slice(0, 18);
+
+    if (!items.length) return '<p class="property-modal-empty">Amenities available on request.</p>';
+    return items.map(item => `<span>${escapeHtml(item)}</span>`).join('');
+}
+
+function ensurePropertyModal() {
+    let modal = document.getElementById('propertyDetailsModal');
+    if (modal) return modal;
+
+    modal = document.createElement('div');
+    modal.id = 'propertyDetailsModal';
+    modal.className = 'property-modal';
+    modal.setAttribute('aria-hidden', 'true');
+    modal.innerHTML = `
+        <div class="property-modal-backdrop" data-modal-close></div>
+        <div class="property-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="propertyModalTitle">
+            <button class="property-modal-close" type="button" aria-label="Close property details" data-modal-close>×</button>
+            <div class="property-modal-body" id="propertyModalBody"></div>
+        </div>
+    `;
+    document.body.appendChild(modal);
+    return modal;
+}
+
+function closePropertyModal() {
+    const modal = document.getElementById('propertyDetailsModal');
+    if (!modal) return;
+    modal.classList.remove('active');
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('modal-open');
+}
+
+function openPropertyModal(propertyId) {
+    const prop = properties.find(item => String(item.id) === String(propertyId));
+    if (!prop) return;
+
+    const modal = ensurePropertyModal();
+    const body = modal.querySelector('#propertyModalBody');
+    const image = prop.image || 'logo.png';
+    const metaRows = [
+        ['Location', prop.location],
+        ['Developer', prop.developer],
+        ['Type', prop.type],
+        ['Status', prop.status],
+        ['Beds', formatFeature(prop.beds)],
+        ['Baths', formatFeature(prop.baths)],
+        ['Size', formatFeature(prop.sqft, ' sqft')]
+    ];
+
+    body.innerHTML = `
+        <div class="property-modal-image-wrap">
+            <img src="${escapeHtml(image)}" alt="${escapeHtml(prop.name)}" class="property-modal-image">
+            <div class="property-modal-badges">
+                <span>${modalValue(prop.status, 'Property')}</span>
+                <span>${modalValue(prop.location, 'Dubai')}</span>
+            </div>
+        </div>
+        <div class="property-modal-content">
+            <div class="property-modal-kicker">Property Details</div>
+            <h2 id="propertyModalTitle">${modalValue(prop.name, 'Property')}</h2>
+            <div class="property-modal-price">${modalValue(prop.price, 'Price on request')}</div>
+            <div class="property-modal-specs">
+                ${metaRows.map(([label, value]) => `
+                    <div>
+                        <span>${escapeHtml(label)}</span>
+                        <strong>${modalValue(value)}</strong>
+                    </div>
+                `).join('')}
+            </div>
+            <div class="property-modal-section">
+                <h3>Description</h3>
+                <p>${modalValue(prop.description, 'Full description available on request.')}</p>
+            </div>
+            <div class="property-modal-section">
+                <h3>Amenities</h3>
+                <div class="property-modal-amenities">${amenityChips(prop.amenities)}</div>
+            </div>
+            <div class="property-modal-contact">
+                <div>
+                    <span>Advisor</span>
+                    <strong>${modalValue(prop.agentName, 'INV Why Real Estate')}</strong>
+                    <small>${modalValue(prop.agentPhone, '+971 50 498 3085')}</small>
+                </div>
+                <a class="property-modal-whatsapp" href="${getWhatsAppLink(prop)}" target="_blank" rel="noopener noreferrer">Ask on WhatsApp</a>
+            </div>
+        </div>
+    `;
+
+    modal.classList.add('active');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('modal-open');
+    modal.querySelector('.property-modal-close')?.focus();
+}
+
+document.addEventListener('click', event => {
+    const detailsButton = event.target.closest('.property-details-btn[data-property-id]');
+    if (detailsButton) {
+        event.preventDefault();
+        openPropertyModal(detailsButton.dataset.propertyId);
+        return;
+    }
+
+    if (event.target.closest('[data-modal-close]')) {
+        closePropertyModal();
+    }
+});
+
+document.addEventListener('keydown', event => {
+    if (event.key === 'Escape') closePropertyModal();
+});
 
 
 // ==================== SCROLL ANIMATIONS ====================
