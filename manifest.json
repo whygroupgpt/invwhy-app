@@ -2,8 +2,8 @@
   "name": "INV WHY GROUP Real Estate",
   "short_name": "INV WHY",
   "description": "Premium Dubai real estate app for INV WHY GROUP.",
-  "start_url": ".",
-  "scope": ".",
+  "start_url": "./index.html",
+  "scope": "./",
   "display": "standalone",
   "background_color": "#000000",
   "theme_color": "#000000",
@@ -27,5 +27,6 @@
     "finance",
     "lifestyle"
   ],
-  "lang": "en"
+  "lang": "en",
+  "dir": "ltr"
 }
