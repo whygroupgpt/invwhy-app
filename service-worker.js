@@ -1,4 +1,4 @@
-const CACHE_NAME = 'inv-why-news-pwa-fixed-v2';
+const CACHE_NAME = 'inv-why-news-pwa-fixed-v4';
 const APP_SHELL = [
   './',
   'index.html',
