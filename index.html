@@ -18,8 +18,7 @@
 
 <style id="critical-splash-style">
 html.skip-splash #appSplash { display: none !important; opacity: 0 !important; visibility: hidden !important; pointer-events: none !important; }
-
-#appSplash.glass-splash {
+#appSplash.door-splash {
     position: fixed !important;
     inset: 0 !important;
     z-index: 99999 !important;
@@ -27,104 +26,168 @@ html.skip-splash #appSplash { display: none !important; opacity: 0 !important; v
     align-items: center !important;
     justify-content: center !important;
     overflow: hidden !important;
-    background: #0b0d10 !important;
+    background:
+        radial-gradient(circle at 50% 38%, rgba(140,0,0,.20), transparent 34%),
+        linear-gradient(180deg, #030303 0%, #070707 52%, #000000 100%) !important;
     opacity: 1;
     visibility: visible;
     transition: opacity .75s ease, visibility .75s ease;
 }
-#appSplash.glass-splash.hide {
+#appSplash.door-splash.hide {
     opacity: 0 !important;
     visibility: hidden !important;
     pointer-events: none !important;
 }
-#appSplash .glass-splash-bg {
+#appSplash .door-splash-depth {
     position: absolute !important;
-    inset: -24px !important;
+    inset: 0 !important;
     background:
-        linear-gradient(180deg, rgba(0,0,0,.30), rgba(0,0,0,.64)),
-        url('https://images.unsplash.com/photo-1518684079-3c830dcef090?w=1920&q=85') center/cover no-repeat !important;
-    filter: blur(12px) saturate(.88) brightness(.76) !important;
-    transform: scale(1.05) !important;
+        linear-gradient(90deg, rgba(255,40,40,.10) 0 1px, transparent 1px) center/74px 100%,
+        radial-gradient(circle at 50% 58%, rgba(255,49,49,.12), transparent 40%) !important;
+    opacity: .32 !important;
 }
-#appSplash .glass-splash-card {
-    position: relative !important;
-    z-index: 2 !important;
-    width: min(78vw, 440px) !important;
-    min-height: 330px !important;
-    padding: 48px 42px 42px !important;
-    border-radius: 32px !important;
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: center !important;
-    justify-content: center !important;
-    text-align: center !important;
-    background: linear-gradient(135deg, rgba(255,255,255,.18), rgba(255,255,255,.065)) !important;
-    border: 1px solid rgba(255,255,255,.55) !important;
-    box-shadow: 0 38px 100px rgba(0,0,0,.44), inset 0 1px 0 rgba(255,255,255,.38) !important;
-    backdrop-filter: blur(24px) saturate(145%) !important;
-    -webkit-backdrop-filter: blur(24px) saturate(145%) !important;
+#appSplash .door-splash-logo-wrap {
+    position: absolute !important;
+    top: clamp(42px, 8vh, 72px) !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    z-index: 4 !important;
 }
-#appSplash .glass-splash-logo {
-    width: min(42vw, 185px) !important;
-    max-height: 150px !important;
+#appSplash .door-splash-logo {
+    width: min(30vw, 116px) !important;
+    max-height: 92px !important;
     object-fit: contain !important;
-    filter: drop-shadow(0 18px 34px rgba(255, 35, 35, .24)) !important;
-    margin-bottom: 28px !important;
+    filter: drop-shadow(0 12px 26px rgba(255,40,40,.28)) !important;
 }
-#appSplash .glass-splash-line {
-    width: 74px !important;
-    height: 3px !important;
+#appSplash .door-scene {
+    position: absolute !important;
+    top: 18% !important;
+    left: 50% !important;
+    width: min(58vw, 360px) !important;
+    height: min(47vh, 430px) !important;
+    transform: translateX(-50%) !important;
+    perspective: 900px !important;
+    z-index: 2 !important;
+}
+#appSplash .door-frame {
+    position: absolute !important;
+    inset: 11% 18% 0 !important;
+    border: 2px solid rgba(255,49,49,.94) !important;
+    box-shadow: 0 0 20px rgba(255,49,49,.70), inset 0 0 28px rgba(255,49,49,.16) !important;
+}
+#appSplash .door-panel {
+    position: absolute !important;
+    top: 11% !important;
+    bottom: 0 !important;
+    width: 32% !important;
+    background: linear-gradient(135deg, rgba(45,0,0,.96), rgba(6,6,6,.98)) !important;
+    border: 1px solid rgba(255,49,49,.34) !important;
+    box-shadow: 0 0 28px rgba(255,49,49,.14) !important;
+    animation: doorOpen 1.6s cubic-bezier(.16,1,.3,1) infinite alternate !important;
+}
+#appSplash .door-left { left: 18% !important; transform-origin: left center !important; }
+#appSplash .door-right { right: 18% !important; transform-origin: right center !important; animation-name: doorOpenRight !important; }
+#appSplash .door-city {
+    position: absolute !important;
+    inset: 18% 24% 8% !important;
+    background:
+        linear-gradient(180deg, rgba(0,0,0,.22), rgba(0,0,0,.84)),
+        url('https://images.unsplash.com/photo-1518684079-3c830dcef090?w=900&q=80') center/cover no-repeat !important;
+    filter: grayscale(.25) contrast(1.08) brightness(.66) !important;
+}
+#appSplash .door-floor {
+    position: absolute !important;
+    left: 10% !important;
+    right: 10% !important;
+    bottom: 0 !important;
+    height: 24% !important;
+    background:
+        linear-gradient(90deg, transparent, rgba(255,49,49,.55), transparent),
+        repeating-linear-gradient(90deg, rgba(255,49,49,.16) 0 1px, transparent 1px 34px) !important;
+    clip-path: polygon(30% 0, 70% 0, 100% 100%, 0 100%) !important;
+    opacity: .78 !important;
+}
+#appSplash .door-splash-content {
+    position: absolute !important;
+    z-index: 4 !important;
+    bottom: clamp(38px, 8vh, 74px) !important;
+    left: 50% !important;
+    width: min(82vw, 420px) !important;
+    transform: translateX(-50%) !important;
+    text-align: center !important;
+}
+#appSplash .door-splash-title {
+    color: #fff !important;
+    font-size: clamp(1.25rem, 4.5vw, 2rem) !important;
+    font-weight: 800 !important;
+    letter-spacing: .42em !important;
+    margin-left: .42em !important;
+}
+#appSplash .door-splash-subtitle {
+    margin-top: 10px !important;
+    color: #ff3131 !important;
+    font-size: clamp(.72rem, 2.4vw, .95rem) !important;
+    font-weight: 800 !important;
+    letter-spacing: .46em !important;
+    margin-left: .46em !important;
+}
+#appSplash .door-splash-loading {
+    color: rgba(255,255,255,.82) !important;
+    margin: 20px 0 16px !important;
+    font-size: 1rem !important;
+}
+#appSplash .door-splash-progress {
+    position: relative !important;
+    width: min(70vw, 320px) !important;
+    height: 6px !important;
+    margin: 0 auto !important;
     border-radius: 999px !important;
-    margin-bottom: 22px !important;
-    background: linear-gradient(90deg, transparent, #ff3131, transparent) !important;
-    box-shadow: 0 0 18px rgba(255,49,49,.55) !important;
+    overflow: hidden !important;
+    background: rgba(255,255,255,.20) !important;
 }
-#appSplash .glass-splash-loading {
-    margin: 0 0 22px !important;
-    color: #ffffff !important;
-    font-size: 1.25rem !important;
-    letter-spacing: .01em !important;
+#appSplash .door-splash-progress span {
+    position: absolute !important;
+    inset: 0 auto 0 0 !important;
+    width: 42% !important;
+    border-radius: inherit !important;
+    background: linear-gradient(90deg, #8b0000, #ff3131, #fff) !important;
+    box-shadow: 0 0 18px rgba(255,49,49,.72) !important;
+    animation: doorProgress 1.25s cubic-bezier(.4,0,.2,1) infinite !important;
 }
-#appSplash .glass-splash-dots {
-    display: flex !important;
-    align-items: center !important;
-    gap: 14px !important;
-}
-#appSplash .glass-splash-dots span {
-    width: 10px !important;
-    height: 10px !important;
-    border-radius: 50% !important;
-    background: rgba(255,255,255,.62) !important;
-    animation: glassSplashDots 1.25s ease-in-out infinite !important;
-}
-#appSplash .glass-splash-dots span:nth-child(1) {
-    background: #ff3131 !important;
-    box-shadow: 0 0 16px rgba(255,49,49,.62) !important;
-}
-#appSplash .glass-splash-dots span:nth-child(2) { animation-delay: .16s !important; }
-#appSplash .glass-splash-dots span:nth-child(3) { animation-delay: .32s !important; }
-@keyframes glassSplashDots {
-    0%, 100% { transform: translateY(0); opacity: .58; }
-    50% { transform: translateY(-6px); opacity: 1; }
-}
+@keyframes doorOpen { from { transform: rotateY(0); } to { transform: rotateY(-58deg); } }
+@keyframes doorOpenRight { from { transform: rotateY(0); } to { transform: rotateY(58deg); } }
+@keyframes doorProgress { 0% { transform: translateX(-115%); } 55% { transform: translateX(105%); } 100% { transform: translateX(240%); } }
 @media (max-width: 480px) {
-    #appSplash .glass-splash-card {
-        width: min(86vw, 360px) !important;
-        min-height: 300px !important;
-        padding: 40px 28px 34px !important;
-        border-radius: 28px !important;
-    }
-    #appSplash .glass-splash-logo {
-        width: min(55vw, 165px) !important;
-    }
+    #appSplash .door-scene { width: min(76vw, 330px) !important; height: min(45vh, 390px) !important; top: 19% !important; }
+    #appSplash .door-splash-logo { width: min(38vw, 104px) !important; }
 }
 </style>
 
 </head>
 <body>
-    <div id="appSplash" class="app-splash glass-splash" aria-label="Loading INV WHY Real Estate">
-        <div class="glass-splash-bg" aria-hidden="true"></div>
-        <div class="glass-splash-card">
+    <div id="appSplash" class="app-splash door-splash" aria-label="Loading INV WHY Real Estate">
+        <div class="door-splash-depth" aria-hidden="true"></div>
+        <div class="door-splash-logo-wrap">
+            <img src="./logo.png" alt="INV WHY Real Estate" class="door-splash-logo">
+        </div>
+        <div class="door-scene" aria-hidden="true">
+            <div class="door-panel door-left"></div>
+            <div class="door-panel door-right"></div>
+            <div class="door-frame"></div>
+            <div class="door-city"></div>
+            <div class="door-floor"></div>
+        </div>
+        <div class="door-splash-content">
+            <div class="door-splash-title">I N V&nbsp;&nbsp; W H Y</div>
+            <div class="door-splash-subtitle">R E A L&nbsp;&nbsp; E S T A T E</div>
+            <p class="door-splash-loading">Loading...</p>
+            <div class="door-splash-progress" aria-hidden="true">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+<div class="glass-splash-card">
             <img src="./logo.png" alt="INV WHY Real Estate" class="glass-splash-logo">
             <div class="glass-splash-line" aria-hidden="true"></div>
             <p class="glass-splash-loading">Loading...</p>

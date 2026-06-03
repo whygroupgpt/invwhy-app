@@ -1,4 +1,4 @@
-const CACHE_NAME = 'inv-why-no-splash-properties-v12';
+const CACHE_NAME = 'inv-why-open-door-splash-v13';
 
 const APP_SHELL = [
   './',

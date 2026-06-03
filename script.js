@@ -1090,7 +1090,10 @@ if ('serviceWorker' in navigator) {
 
 
 
-// ==================== GLASS SPLASH LOADER ====================
+
+
+
+// ==================== OPEN DOOR SPLASH LOADER ====================
 (() => {
     const splash = document.getElementById('appSplash');
     if (!splash) return;
@@ -1101,7 +1104,7 @@ if ('serviceWorker' in navigator) {
     }
 
     const start = performance.now();
-    const minDisplayTime = 1000;
+    const minDisplayTime = 1150;
     let hidden = false;
 
     const hideSplash = () => {
@@ -1118,6 +1121,6 @@ if ('serviceWorker' in navigator) {
     };
 
     window.addEventListener('load', hideSplash, { once: true });
-    window.setTimeout(hideSplash, 2800);
+    window.setTimeout(hideSplash, 3000);
 })();
-// ==================== END GLASS SPLASH LOADER ====================
+// ==================== END OPEN DOOR SPLASH LOADER ====================
