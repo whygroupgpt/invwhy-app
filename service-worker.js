@@ -1,4 +1,4 @@
-const CACHE_NAME = 'inv-why-news-home-only-v7';
+const CACHE_NAME = 'inv-why-pwa-splash-v9';
 
 const APP_SHELL = [
   './',
@@ -23,9 +23,7 @@ const APP_SHELL = [
 self.addEventListener('install', event => {
   event.waitUntil(
     caches.open(CACHE_NAME).then(async cache => {
-      await Promise.allSettled(
-        APP_SHELL.map(url => cache.add(url))
-      );
+      await Promise.allSettled(APP_SHELL.map(url => cache.add(url)));
     })
   );
   self.skipWaiting();
@@ -44,9 +42,9 @@ self.addEventListener('fetch', event => {
   if (event.request.method !== 'GET') return;
 
   const request = event.request;
+  const acceptsHtml = request.headers.get('accept')?.includes('text/html');
 
-  // Network-first for page navigation so About/Contact do not get stuck on an old cached index.
-  if (request.mode === 'navigate' || request.headers.get('accept')?.includes('text/html')) {
+  if (request.mode === 'navigate' || acceptsHtml) {
     event.respondWith(
       fetch(request)
         .then(response => {
@@ -62,7 +60,6 @@ self.addEventListener('fetch', event => {
     return;
   }
 
-  // Cache-first for static files, with network fallback.
   event.respondWith(
     caches.match(request).then(cached => {
       if (cached) return cached;

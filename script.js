@@ -1081,3 +1081,34 @@ if ('serviceWorker' in navigator) {
         navigator.serviceWorker.register('service-worker.js').catch(() => {});
     });
 }
+
+
+
+// ==================== DARK PREMIUM SPLASH LOADER ====================
+(() => {
+    const splash = document.getElementById('appSplash');
+    if (!splash) return;
+
+    const start = performance.now();
+    const minDisplayTime = 1150;
+
+    const hideSplash = () => {
+        const elapsed = performance.now() - start;
+        const delay = Math.max(0, minDisplayTime - elapsed);
+
+        window.setTimeout(() => {
+            splash.classList.add('hide');
+            window.setTimeout(() => {
+                splash.remove();
+            }, 850);
+        }, delay);
+    };
+
+    if (document.readyState === 'complete') {
+        hideSplash();
+    } else {
+        window.addEventListener('load', hideSplash, { once: true });
+        window.setTimeout(hideSplash, 3200);
+    }
+})();
+// ==================== END DARK PREMIUM SPLASH LOADER ====================

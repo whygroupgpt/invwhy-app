@@ -5869,3 +5869,192 @@ body.modal-open {
     .news-control[data-news-next] { display: none; }
     .news-track-viewport { margin-left: 16px; }
 }
+
+
+
+/* ==================== DARK PREMIUM APP SPLASH ==================== */
+.app-splash {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background:
+        radial-gradient(circle at 50% 38%, rgba(160, 0, 0, 0.16), transparent 34%),
+        radial-gradient(circle at 50% 100%, rgba(120, 0, 0, 0.28), transparent 42%),
+        linear-gradient(180deg, #050505 0%, #090909 48%, #000000 100%);
+    overflow: hidden;
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.75s ease, visibility 0.75s ease;
+}
+
+.app-splash::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(115deg, transparent 0%, rgba(255,255,255,0.045) 44%, transparent 58%),
+        radial-gradient(circle at 50% 22%, rgba(255,255,255,0.07), transparent 28%);
+    animation: splashSheen 2.2s ease-in-out infinite;
+}
+
+.app-splash::after {
+    content: '';
+    position: absolute;
+    inset: auto 0 0;
+    height: 34%;
+    background: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.92) 86%);
+    pointer-events: none;
+}
+
+.app-splash.hide {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.app-splash-glow {
+    position: absolute;
+    width: 420px;
+    height: 420px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(198, 24, 24, 0.20), transparent 68%);
+    filter: blur(12px);
+    animation: splashGlow 1.8s ease-in-out infinite alternate;
+}
+
+.app-splash-inner {
+    position: relative;
+    z-index: 2;
+    width: min(82vw, 420px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    transform: translateY(-12px);
+}
+
+.app-splash-logo {
+    width: min(44vw, 185px);
+    max-height: 185px;
+    object-fit: contain;
+    margin-bottom: 34px;
+    filter: drop-shadow(0 16px 38px rgba(180, 0, 0, 0.26));
+    animation: splashLogoFloat 1.75s ease-in-out infinite alternate;
+}
+
+.app-splash-title {
+    color: #ffffff;
+    font-size: clamp(1.5rem, 5vw, 2.45rem);
+    font-weight: 800;
+    letter-spacing: 0.42em;
+    margin-left: 0.42em;
+    text-shadow: 0 0 22px rgba(255,255,255,0.16);
+}
+
+.app-splash-subtitle {
+    margin-top: 12px;
+    color: #ff3131;
+    font-size: clamp(0.8rem, 2.6vw, 1.05rem);
+    font-weight: 800;
+    letter-spacing: 0.52em;
+    margin-left: 0.52em;
+    text-shadow: 0 0 18px rgba(255, 49, 49, 0.32);
+}
+
+.app-splash-progress {
+    position: relative;
+    width: min(72vw, 330px);
+    height: 8px;
+    margin-top: 44px;
+    border-radius: 999px;
+    overflow: hidden;
+    background: rgba(255,255,255,0.16);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.12), 0 0 24px rgba(179, 0, 0, 0.18);
+}
+
+.app-splash-progress span {
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 45%;
+    border-radius: inherit;
+    background: linear-gradient(90deg, #7a0000 0%, #ff3838 68%, #ffffff 100%);
+    box-shadow: 0 0 22px rgba(255, 49, 49, 0.62);
+    animation: splashProgress 1.35s cubic-bezier(.4,0,.2,1) infinite;
+}
+
+.app-splash-loading {
+    margin-top: 22px;
+    color: rgba(255,255,255,0.66);
+    font-size: 1rem;
+    letter-spacing: 0.02em;
+}
+
+.app-splash-skyline {
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    z-index: 1;
+    width: min(900px, 100vw);
+    height: 155px;
+    transform: translateX(-50%);
+    opacity: 0.24;
+    background:
+        linear-gradient(to top, rgba(255,49,49,0.52), rgba(255,49,49,0.08) 4px, transparent 4px),
+        linear-gradient(to top, rgba(255,255,255,0.40), rgba(255,255,255,0.08) 2px, transparent 2px);
+    clip-path: polygon(
+        0 100%, 0 86%, 4% 86%, 4% 74%, 7% 74%, 7% 91%, 10% 91%,
+        10% 64%, 13% 64%, 13% 84%, 17% 84%, 17% 70%, 20% 70%,
+        20% 94%, 24% 94%, 24% 55%, 28% 55%, 28% 88%, 31% 88%,
+        31% 66%, 35% 66%, 35% 92%, 39% 92%, 39% 60%, 42% 60%,
+        42% 86%, 46% 86%, 46% 36%, 48% 22%, 50% 36%, 50% 92%,
+        54% 92%, 54% 58%, 58% 58%, 58% 84%, 62% 84%, 62% 69%,
+        66% 69%, 66% 94%, 70% 94%, 70% 50%, 73% 50%, 73% 89%,
+        77% 89%, 77% 70%, 81% 70%, 81% 92%, 85% 92%, 85% 62%,
+        89% 62%, 89% 86%, 93% 86%, 93% 76%, 96% 76%, 96% 94%,
+        100% 94%, 100% 100%
+    );
+}
+
+@keyframes splashProgress {
+    0% { transform: translateX(-115%); }
+    52% { transform: translateX(90%); }
+    100% { transform: translateX(240%); }
+}
+
+@keyframes splashLogoFloat {
+    from { transform: translateY(0) scale(1); }
+    to { transform: translateY(-7px) scale(1.025); }
+}
+
+@keyframes splashGlow {
+    from { opacity: 0.55; transform: scale(0.92); }
+    to { opacity: 1; transform: scale(1.08); }
+}
+
+@keyframes splashSheen {
+    0%, 100% { transform: translateX(-12%); opacity: 0.45; }
+    50% { transform: translateX(12%); opacity: 0.85; }
+}
+
+@media (max-width: 480px) {
+    .app-splash-inner {
+        transform: translateY(-4px);
+    }
+
+    .app-splash-logo {
+        width: min(54vw, 165px);
+        margin-bottom: 28px;
+    }
+
+    .app-splash-progress {
+        margin-top: 36px;
+    }
+
+    .app-splash-skyline {
+        height: 120px;
+    }
+}
+/* ==================== END DARK PREMIUM APP SPLASH ==================== */
