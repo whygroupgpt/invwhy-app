@@ -11,103 +11,121 @@
     <link rel="apple-touch-icon" href="./icon-192.png">
 
 <style id="critical-splash-style">
-#appSplash {
+#appSplash.glass-splash {
     position: fixed !important;
     inset: 0 !important;
     z-index: 99999 !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
-    background:
-        radial-gradient(circle at 50% 38%, rgba(160, 0, 0, 0.16), transparent 34%),
-        radial-gradient(circle at 50% 100%, rgba(120, 0, 0, 0.28), transparent 42%),
-        linear-gradient(180deg, #050505 0%, #090909 48%, #000000 100%) !important;
     overflow: hidden !important;
+    background: #0b0d10 !important;
     opacity: 1;
     visibility: visible;
     transition: opacity .75s ease, visibility .75s ease;
 }
-#appSplash.hide {
+#appSplash.glass-splash.hide {
     opacity: 0 !important;
     visibility: hidden !important;
     pointer-events: none !important;
 }
-#appSplash .app-splash-inner {
+#appSplash .glass-splash-bg {
+    position: absolute !important;
+    inset: -24px !important;
+    background:
+        linear-gradient(180deg, rgba(0,0,0,.30), rgba(0,0,0,.64)),
+        url('https://images.unsplash.com/photo-1518684079-3c830dcef090?w=1920&q=85') center/cover no-repeat !important;
+    filter: blur(12px) saturate(.88) brightness(.76) !important;
+    transform: scale(1.05) !important;
+}
+#appSplash .glass-splash-card {
     position: relative !important;
     z-index: 2 !important;
-    width: min(82vw, 420px) !important;
+    width: min(78vw, 440px) !important;
+    min-height: 330px !important;
+    padding: 48px 42px 42px !important;
+    border-radius: 32px !important;
     display: flex !important;
     flex-direction: column !important;
     align-items: center !important;
+    justify-content: center !important;
     text-align: center !important;
-    transform: translateY(-12px) !important;
+    background: linear-gradient(135deg, rgba(255,255,255,.18), rgba(255,255,255,.065)) !important;
+    border: 1px solid rgba(255,255,255,.55) !important;
+    box-shadow: 0 38px 100px rgba(0,0,0,.44), inset 0 1px 0 rgba(255,255,255,.38) !important;
+    backdrop-filter: blur(24px) saturate(145%) !important;
+    -webkit-backdrop-filter: blur(24px) saturate(145%) !important;
 }
-#appSplash .app-splash-logo {
-    width: min(44vw, 185px) !important;
-    max-height: 185px !important;
+#appSplash .glass-splash-logo {
+    width: min(42vw, 185px) !important;
+    max-height: 150px !important;
     object-fit: contain !important;
-    margin-bottom: 34px !important;
-    filter: drop-shadow(0 16px 38px rgba(180, 0, 0, 0.26)) !important;
+    filter: drop-shadow(0 18px 34px rgba(255, 35, 35, .24)) !important;
+    margin-bottom: 28px !important;
 }
-#appSplash .app-splash-title {
-    color: #ffffff !important;
-    font-size: clamp(1.5rem, 5vw, 2.45rem) !important;
-    font-weight: 800 !important;
-    letter-spacing: .42em !important;
-    margin-left: .42em !important;
-}
-#appSplash .app-splash-subtitle {
-    margin-top: 12px !important;
-    color: #ff3131 !important;
-    font-size: clamp(.8rem, 2.6vw, 1.05rem) !important;
-    font-weight: 800 !important;
-    letter-spacing: .52em !important;
-    margin-left: .52em !important;
-}
-#appSplash .app-splash-progress {
-    position: relative !important;
-    width: min(72vw, 330px) !important;
-    height: 8px !important;
-    margin-top: 44px !important;
+#appSplash .glass-splash-line {
+    width: 74px !important;
+    height: 3px !important;
     border-radius: 999px !important;
-    overflow: hidden !important;
-    background: rgba(255,255,255,.16) !important;
+    margin-bottom: 22px !important;
+    background: linear-gradient(90deg, transparent, #ff3131, transparent) !important;
+    box-shadow: 0 0 18px rgba(255,49,49,.55) !important;
 }
-#appSplash .app-splash-progress span {
-    position: absolute !important;
-    inset: 0 auto 0 0 !important;
-    width: 45% !important;
-    border-radius: inherit !important;
-    background: linear-gradient(90deg, #7a0000 0%, #ff3838 68%, #ffffff 100%) !important;
-    box-shadow: 0 0 22px rgba(255,49,49,.62) !important;
-    animation: criticalSplashProgress 1.35s cubic-bezier(.4,0,.2,1) infinite !important;
+#appSplash .glass-splash-loading {
+    margin: 0 0 22px !important;
+    color: #ffffff !important;
+    font-size: 1.25rem !important;
+    letter-spacing: .01em !important;
 }
-#appSplash .app-splash-loading {
-    margin-top: 22px !important;
-    color: rgba(255,255,255,.66) !important;
-    font-size: 1rem !important;
+#appSplash .glass-splash-dots {
+    display: flex !important;
+    align-items: center !important;
+    gap: 14px !important;
 }
-@keyframes criticalSplashProgress {
-    0% { transform: translateX(-115%); }
-    52% { transform: translateX(90%); }
-    100% { transform: translateX(240%); }
+#appSplash .glass-splash-dots span {
+    width: 10px !important;
+    height: 10px !important;
+    border-radius: 50% !important;
+    background: rgba(255,255,255,.62) !important;
+    animation: glassSplashDots 1.25s ease-in-out infinite !important;
+}
+#appSplash .glass-splash-dots span:nth-child(1) {
+    background: #ff3131 !important;
+    box-shadow: 0 0 16px rgba(255,49,49,.62) !important;
+}
+#appSplash .glass-splash-dots span:nth-child(2) { animation-delay: .16s !important; }
+#appSplash .glass-splash-dots span:nth-child(3) { animation-delay: .32s !important; }
+@keyframes glassSplashDots {
+    0%, 100% { transform: translateY(0); opacity: .58; }
+    50% { transform: translateY(-6px); opacity: 1; }
+}
+@media (max-width: 480px) {
+    #appSplash .glass-splash-card {
+        width: min(86vw, 360px) !important;
+        min-height: 300px !important;
+        padding: 40px 28px 34px !important;
+        border-radius: 28px !important;
+    }
+    #appSplash .glass-splash-logo {
+        width: min(55vw, 165px) !important;
+    }
 }
 </style>
 
 </head>
 <body>
-    <div id="appSplash" class="app-splash" aria-label="Loading INV WHY Real Estate">
-        <div class="app-splash-glow"></div>
-        <div class="app-splash-inner">
-            <img src="./logo.png" alt="INV WHY Real Estate" class="app-splash-logo">
-            <div class="app-splash-title">I N V&nbsp;&nbsp; W H Y</div>
-            <div class="app-splash-subtitle">R E A L&nbsp;&nbsp; E S T A T E</div>
-            <div class="app-splash-progress" aria-hidden="true">
+    <div id="appSplash" class="app-splash glass-splash" aria-label="Loading INV WHY Real Estate">
+        <div class="glass-splash-bg" aria-hidden="true"></div>
+        <div class="glass-splash-card">
+            <img src="./logo.png" alt="INV WHY Real Estate" class="glass-splash-logo">
+            <div class="glass-splash-line" aria-hidden="true"></div>
+            <p class="glass-splash-loading">Loading...</p>
+            <div class="glass-splash-dots" aria-hidden="true">
+                <span></span>
+                <span></span>
                 <span></span>
             </div>
-            <p class="app-splash-loading">Loading...</p>
         </div>
-        <div class="app-splash-skyline" aria-hidden="true"></div>
     </div>
 
 <nav class="navbar">

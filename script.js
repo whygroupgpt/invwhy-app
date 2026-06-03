@@ -1087,13 +1087,16 @@ if ('serviceWorker' in navigator) {
 
 
 
-// ==================== DARK PREMIUM SPLASH LOADER ====================
+
+
+
+// ==================== GLASS SPLASH LOADER ====================
 (() => {
     const splash = document.getElementById('appSplash');
     if (!splash) return;
 
     const start = performance.now();
-    const minDisplayTime = 900;
+    const minDisplayTime = 1000;
     let hidden = false;
 
     const hideSplash = () => {
@@ -1110,6 +1113,6 @@ if ('serviceWorker' in navigator) {
     };
 
     window.addEventListener('load', hideSplash, { once: true });
-    window.setTimeout(hideSplash, 2600);
+    window.setTimeout(hideSplash, 2800);
 })();
-// ==================== END DARK PREMIUM SPLASH LOADER ====================
+// ==================== END GLASS SPLASH LOADER ====================

@@ -5872,189 +5872,176 @@ body.modal-open {
 
 
 
-/* ==================== DARK PREMIUM APP SPLASH ==================== */
-.app-splash {
+
+
+
+/* ==================== GLASS LOADING CARD SPLASH ==================== */
+.app-splash.glass-splash {
     position: fixed;
     inset: 0;
     z-index: 99999;
     display: flex;
     align-items: center;
     justify-content: center;
-    background:
-        radial-gradient(circle at 50% 38%, rgba(160, 0, 0, 0.16), transparent 34%),
-        radial-gradient(circle at 50% 100%, rgba(120, 0, 0, 0.28), transparent 42%),
-        linear-gradient(180deg, #050505 0%, #090909 48%, #000000 100%);
     overflow: hidden;
+    background: #0b0d10;
     opacity: 1;
     visibility: visible;
     transition: opacity 0.75s ease, visibility 0.75s ease;
 }
 
-.app-splash::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background:
-        linear-gradient(115deg, transparent 0%, rgba(255,255,255,0.045) 44%, transparent 58%),
-        radial-gradient(circle at 50% 22%, rgba(255,255,255,0.07), transparent 28%);
-    animation: splashSheen 2.2s ease-in-out infinite;
-}
-
-.app-splash::after {
-    content: '';
-    position: absolute;
-    inset: auto 0 0;
-    height: 34%;
-    background: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.92) 86%);
-    pointer-events: none;
-}
-
-.app-splash.hide {
+.app-splash.glass-splash.hide {
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
 }
 
-.app-splash-glow {
+.glass-splash-bg {
     position: absolute;
-    width: 420px;
-    height: 420px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(198, 24, 24, 0.20), transparent 68%);
-    filter: blur(12px);
-    animation: splashGlow 1.8s ease-in-out infinite alternate;
+    inset: -24px;
+    background:
+        linear-gradient(180deg, rgba(0,0,0,0.26), rgba(0,0,0,0.66)),
+        url('https://images.unsplash.com/photo-1518684079-3c830dcef090?w=1920&q=85') center/cover no-repeat;
+    filter: blur(12px) saturate(0.88) brightness(0.76);
+    transform: scale(1.05);
+    animation: glassBgFloat 4s ease-in-out infinite alternate;
 }
 
-.app-splash-inner {
+.glass-splash-card {
     position: relative;
     z-index: 2;
-    width: min(82vw, 420px);
+    width: min(78vw, 440px);
+    min-height: 330px;
+    padding: 48px 42px 42px;
+    border-radius: 32px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     text-align: center;
-    transform: translateY(-12px);
-}
-
-.app-splash-logo {
-    width: min(44vw, 185px);
-    max-height: 185px;
-    object-fit: contain;
-    margin-bottom: 34px;
-    filter: drop-shadow(0 16px 38px rgba(180, 0, 0, 0.26));
-    animation: splashLogoFloat 1.75s ease-in-out infinite alternate;
-}
-
-.app-splash-title {
-    color: #ffffff;
-    font-size: clamp(1.5rem, 5vw, 2.45rem);
-    font-weight: 800;
-    letter-spacing: 0.42em;
-    margin-left: 0.42em;
-    text-shadow: 0 0 22px rgba(255,255,255,0.16);
-}
-
-.app-splash-subtitle {
-    margin-top: 12px;
-    color: #ff3131;
-    font-size: clamp(0.8rem, 2.6vw, 1.05rem);
-    font-weight: 800;
-    letter-spacing: 0.52em;
-    margin-left: 0.52em;
-    text-shadow: 0 0 18px rgba(255, 49, 49, 0.32);
-}
-
-.app-splash-progress {
-    position: relative;
-    width: min(72vw, 330px);
-    height: 8px;
-    margin-top: 44px;
-    border-radius: 999px;
+    background: linear-gradient(135deg, rgba(255,255,255,0.18), rgba(255,255,255,0.065));
+    border: 1px solid rgba(255,255,255,0.55);
+    box-shadow:
+        0 38px 100px rgba(0,0,0,0.44),
+        inset 0 1px 0 rgba(255,255,255,0.38),
+        inset 0 -28px 70px rgba(255,255,255,0.035);
+    backdrop-filter: blur(24px) saturate(145%);
+    -webkit-backdrop-filter: blur(24px) saturate(145%);
     overflow: hidden;
-    background: rgba(255,255,255,0.16);
-    box-shadow: inset 0 1px 0 rgba(255,255,255,0.12), 0 0 24px rgba(179, 0, 0, 0.18);
+    animation: glassCardIn 0.75s cubic-bezier(.16,1,.3,1) both;
 }
 
-.app-splash-progress span {
+.glass-splash-card::before {
+    content: '';
     position: absolute;
-    inset: 0 auto 0 0;
-    width: 45%;
+    inset: 1px;
     border-radius: inherit;
-    background: linear-gradient(90deg, #7a0000 0%, #ff3838 68%, #ffffff 100%);
-    box-shadow: 0 0 22px rgba(255, 49, 49, 0.62);
-    animation: splashProgress 1.35s cubic-bezier(.4,0,.2,1) infinite;
-}
-
-.app-splash-loading {
-    margin-top: 22px;
-    color: rgba(255,255,255,0.66);
-    font-size: 1rem;
-    letter-spacing: 0.02em;
-}
-
-.app-splash-skyline {
-    position: absolute;
-    left: 50%;
-    bottom: 0;
-    z-index: 1;
-    width: min(900px, 100vw);
-    height: 155px;
-    transform: translateX(-50%);
-    opacity: 0.24;
     background:
-        linear-gradient(to top, rgba(255,49,49,0.52), rgba(255,49,49,0.08) 4px, transparent 4px),
-        linear-gradient(to top, rgba(255,255,255,0.40), rgba(255,255,255,0.08) 2px, transparent 2px);
-    clip-path: polygon(
-        0 100%, 0 86%, 4% 86%, 4% 74%, 7% 74%, 7% 91%, 10% 91%,
-        10% 64%, 13% 64%, 13% 84%, 17% 84%, 17% 70%, 20% 70%,
-        20% 94%, 24% 94%, 24% 55%, 28% 55%, 28% 88%, 31% 88%,
-        31% 66%, 35% 66%, 35% 92%, 39% 92%, 39% 60%, 42% 60%,
-        42% 86%, 46% 86%, 46% 36%, 48% 22%, 50% 36%, 50% 92%,
-        54% 92%, 54% 58%, 58% 58%, 58% 84%, 62% 84%, 62% 69%,
-        66% 69%, 66% 94%, 70% 94%, 70% 50%, 73% 50%, 73% 89%,
-        77% 89%, 77% 70%, 81% 70%, 81% 92%, 85% 92%, 85% 62%,
-        89% 62%, 89% 86%, 93% 86%, 93% 76%, 96% 76%, 96% 94%,
-        100% 94%, 100% 100%
-    );
+        radial-gradient(circle at 28% 8%, rgba(255,255,255,0.28), transparent 28%),
+        linear-gradient(120deg, rgba(255,255,255,0.16), transparent 40%, rgba(255,255,255,0.06));
+    pointer-events: none;
 }
 
-@keyframes splashProgress {
-    0% { transform: translateX(-115%); }
-    52% { transform: translateX(90%); }
-    100% { transform: translateX(240%); }
+.glass-splash-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    transform: translateX(-120%);
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.12), transparent);
+    animation: glassShine 2.2s ease-in-out infinite;
+    pointer-events: none;
 }
 
-@keyframes splashLogoFloat {
-    from { transform: translateY(0) scale(1); }
-    to { transform: translateY(-7px) scale(1.025); }
+.glass-splash-logo {
+    position: relative;
+    z-index: 1;
+    width: min(42vw, 185px);
+    max-height: 150px;
+    object-fit: contain;
+    filter: drop-shadow(0 18px 34px rgba(255, 35, 35, 0.24));
+    margin-bottom: 28px;
+    animation: glassLogoPulse 1.8s ease-in-out infinite alternate;
 }
 
-@keyframes splashGlow {
-    from { opacity: 0.55; transform: scale(0.92); }
-    to { opacity: 1; transform: scale(1.08); }
+.glass-splash-line {
+    position: relative;
+    z-index: 1;
+    width: 74px;
+    height: 3px;
+    border-radius: 999px;
+    margin-bottom: 22px;
+    background: linear-gradient(90deg, transparent, #ff3131, transparent);
+    box-shadow: 0 0 18px rgba(255,49,49,0.55);
 }
 
-@keyframes splashSheen {
-    0%, 100% { transform: translateX(-12%); opacity: 0.45; }
-    50% { transform: translateX(12%); opacity: 0.85; }
+.glass-splash-loading {
+    position: relative;
+    z-index: 1;
+    margin: 0 0 22px;
+    color: #ffffff;
+    font-size: 1.25rem;
+    letter-spacing: 0.01em;
+}
+
+.glass-splash-dots {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.glass-splash-dots span {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.62);
+    animation: glassSplashDots 1.25s ease-in-out infinite;
+}
+
+.glass-splash-dots span:nth-child(1) {
+    background: #ff3131;
+    box-shadow: 0 0 16px rgba(255,49,49,0.62);
+}
+
+.glass-splash-dots span:nth-child(2) { animation-delay: 0.16s; }
+.glass-splash-dots span:nth-child(3) { animation-delay: 0.32s; }
+
+@keyframes glassSplashDots {
+    0%, 100% { transform: translateY(0); opacity: 0.58; }
+    50% { transform: translateY(-6px); opacity: 1; }
+}
+
+@keyframes glassCardIn {
+    from { opacity: 0; transform: translateY(24px) scale(0.96); filter: blur(12px); }
+    to { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+}
+
+@keyframes glassLogoPulse {
+    from { transform: scale(1); }
+    to { transform: scale(1.035); }
+}
+
+@keyframes glassShine {
+    0%, 55%, 100% { transform: translateX(-120%); }
+    72% { transform: translateX(120%); }
+}
+
+@keyframes glassBgFloat {
+    from { transform: scale(1.05) translateY(0); }
+    to { transform: scale(1.08) translateY(-10px); }
 }
 
 @media (max-width: 480px) {
-    .app-splash-inner {
-        transform: translateY(-4px);
+    .glass-splash-card {
+        width: min(86vw, 360px);
+        min-height: 300px;
+        padding: 40px 28px 34px;
+        border-radius: 28px;
     }
 
-    .app-splash-logo {
-        width: min(54vw, 165px);
-        margin-bottom: 28px;
-    }
-
-    .app-splash-progress {
-        margin-top: 36px;
-    }
-
-    .app-splash-skyline {
-        height: 120px;
+    .glass-splash-logo {
+        width: min(55vw, 165px);
     }
 }
-/* ==================== END DARK PREMIUM APP SPLASH ==================== */
+/* ==================== END GLASS LOADING CARD SPLASH ==================== */
