@@ -1093,6 +1093,9 @@ if ('serviceWorker' in navigator) {
 
 
 
+
+
+
 // ==================== OPEN DOOR SPLASH LOADER ====================
 (() => {
     const splash = document.getElementById('appSplash');
@@ -1104,7 +1107,7 @@ if ('serviceWorker' in navigator) {
     }
 
     const start = performance.now();
-    const minDisplayTime = 1150;
+    const minDisplayTime = 1100;
     let hidden = false;
 
     const hideSplash = () => {

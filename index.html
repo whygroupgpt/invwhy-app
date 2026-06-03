@@ -7,7 +7,7 @@
   }
 </script>
 
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inv Why Real Estate | Home</title>
     <link rel="stylesheet" href="./style.css">
@@ -18,34 +18,38 @@
 
 <style id="critical-splash-style">
 html.skip-splash #appSplash { display: none !important; opacity: 0 !important; visibility: hidden !important; pointer-events: none !important; }
+
 #appSplash.door-splash {
     position: fixed !important;
     inset: 0 !important;
-    z-index: 99999 !important;
+    z-index: 999999 !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
     overflow: hidden !important;
     background:
-        radial-gradient(circle at 50% 38%, rgba(140,0,0,.20), transparent 34%),
+        radial-gradient(circle at 50% 42%, rgba(140,0,0,.20), transparent 34%),
         linear-gradient(180deg, #030303 0%, #070707 52%, #000000 100%) !important;
-    opacity: 1;
-    visibility: visible;
-    transition: opacity .75s ease, visibility .75s ease;
+    opacity: 1 !important;
+    visibility: visible !important;
+    transition: opacity .75s ease, visibility .75s ease !important;
 }
+
 #appSplash.door-splash.hide {
     opacity: 0 !important;
     visibility: hidden !important;
     pointer-events: none !important;
 }
+
 #appSplash .door-splash-depth {
     position: absolute !important;
     inset: 0 !important;
     background:
-        linear-gradient(90deg, rgba(255,40,40,.10) 0 1px, transparent 1px) center/74px 100%,
-        radial-gradient(circle at 50% 58%, rgba(255,49,49,.12), transparent 40%) !important;
-    opacity: .32 !important;
+        radial-gradient(circle at 50% 52%, rgba(255,49,49,.13), transparent 38%),
+        repeating-linear-gradient(90deg, rgba(255,49,49,.07) 0 1px, transparent 1px 74px) !important;
+    opacity: .38 !important;
 }
+
 #appSplash .door-splash-logo-wrap {
     position: absolute !important;
     top: clamp(42px, 8vh, 72px) !important;
@@ -53,12 +57,15 @@ html.skip-splash #appSplash { display: none !important; opacity: 0 !important; v
     transform: translateX(-50%) !important;
     z-index: 4 !important;
 }
+
 #appSplash .door-splash-logo {
     width: min(30vw, 116px) !important;
+    max-width: 116px !important;
     max-height: 92px !important;
     object-fit: contain !important;
     filter: drop-shadow(0 12px 26px rgba(255,40,40,.28)) !important;
 }
+
 #appSplash .door-scene {
     position: absolute !important;
     top: 18% !important;
@@ -69,24 +76,7 @@ html.skip-splash #appSplash { display: none !important; opacity: 0 !important; v
     perspective: 900px !important;
     z-index: 2 !important;
 }
-#appSplash .door-frame {
-    position: absolute !important;
-    inset: 11% 18% 0 !important;
-    border: 2px solid rgba(255,49,49,.94) !important;
-    box-shadow: 0 0 20px rgba(255,49,49,.70), inset 0 0 28px rgba(255,49,49,.16) !important;
-}
-#appSplash .door-panel {
-    position: absolute !important;
-    top: 11% !important;
-    bottom: 0 !important;
-    width: 32% !important;
-    background: linear-gradient(135deg, rgba(45,0,0,.96), rgba(6,6,6,.98)) !important;
-    border: 1px solid rgba(255,49,49,.34) !important;
-    box-shadow: 0 0 28px rgba(255,49,49,.14) !important;
-    animation: doorOpen 1.6s cubic-bezier(.16,1,.3,1) infinite alternate !important;
-}
-#appSplash .door-left { left: 18% !important; transform-origin: left center !important; }
-#appSplash .door-right { right: 18% !important; transform-origin: right center !important; animation-name: doorOpenRight !important; }
+
 #appSplash .door-city {
     position: absolute !important;
     inset: 18% 24% 8% !important;
@@ -94,7 +84,30 @@ html.skip-splash #appSplash { display: none !important; opacity: 0 !important; v
         linear-gradient(180deg, rgba(0,0,0,.22), rgba(0,0,0,.84)),
         url('https://images.unsplash.com/photo-1518684079-3c830dcef090?w=900&q=80') center/cover no-repeat !important;
     filter: grayscale(.25) contrast(1.08) brightness(.66) !important;
+    box-shadow: inset 0 0 40px rgba(255,49,49,.15) !important;
 }
+
+#appSplash .door-frame {
+    position: absolute !important;
+    inset: 11% 18% 0 !important;
+    border: 2px solid rgba(255,49,49,.94) !important;
+    box-shadow: 0 0 20px rgba(255,49,49,.70), inset 0 0 28px rgba(255,49,49,.16) !important;
+}
+
+#appSplash .door-panel {
+    position: absolute !important;
+    top: 11% !important;
+    bottom: 0 !important;
+    width: 32% !important;
+    background: linear-gradient(135deg, rgba(54,0,0,.94), rgba(6,6,6,.98)) !important;
+    border: 1px solid rgba(255,49,49,.34) !important;
+    box-shadow: 0 0 28px rgba(255,49,49,.14) !important;
+    animation: doorOpen 1.6s cubic-bezier(.16,1,.3,1) infinite alternate !important;
+}
+
+#appSplash .door-left { left: 18% !important; transform-origin: left center !important; }
+#appSplash .door-right { right: 18% !important; transform-origin: right center !important; animation-name: doorOpenRight !important; }
+
 #appSplash .door-floor {
     position: absolute !important;
     left: 10% !important;
@@ -107,6 +120,7 @@ html.skip-splash #appSplash { display: none !important; opacity: 0 !important; v
     clip-path: polygon(30% 0, 70% 0, 100% 100%, 0 100%) !important;
     opacity: .78 !important;
 }
+
 #appSplash .door-splash-content {
     position: absolute !important;
     z-index: 4 !important;
@@ -116,6 +130,7 @@ html.skip-splash #appSplash { display: none !important; opacity: 0 !important; v
     transform: translateX(-50%) !important;
     text-align: center !important;
 }
+
 #appSplash .door-splash-title {
     color: #fff !important;
     font-size: clamp(1.25rem, 4.5vw, 2rem) !important;
@@ -123,6 +138,7 @@ html.skip-splash #appSplash { display: none !important; opacity: 0 !important; v
     letter-spacing: .42em !important;
     margin-left: .42em !important;
 }
+
 #appSplash .door-splash-subtitle {
     margin-top: 10px !important;
     color: #ff3131 !important;
@@ -131,11 +147,13 @@ html.skip-splash #appSplash { display: none !important; opacity: 0 !important; v
     letter-spacing: .46em !important;
     margin-left: .46em !important;
 }
+
 #appSplash .door-splash-loading {
     color: rgba(255,255,255,.82) !important;
     margin: 20px 0 16px !important;
     font-size: 1rem !important;
 }
+
 #appSplash .door-splash-progress {
     position: relative !important;
     width: min(70vw, 320px) !important;
@@ -145,6 +163,7 @@ html.skip-splash #appSplash { display: none !important; opacity: 0 !important; v
     overflow: hidden !important;
     background: rgba(255,255,255,.20) !important;
 }
+
 #appSplash .door-splash-progress span {
     position: absolute !important;
     inset: 0 auto 0 0 !important;
@@ -154,12 +173,14 @@ html.skip-splash #appSplash { display: none !important; opacity: 0 !important; v
     box-shadow: 0 0 18px rgba(255,49,49,.72) !important;
     animation: doorProgress 1.25s cubic-bezier(.4,0,.2,1) infinite !important;
 }
+
 @keyframes doorOpen { from { transform: rotateY(0); } to { transform: rotateY(-58deg); } }
 @keyframes doorOpenRight { from { transform: rotateY(0); } to { transform: rotateY(58deg); } }
 @keyframes doorProgress { 0% { transform: translateX(-115%); } 55% { transform: translateX(105%); } 100% { transform: translateX(240%); } }
+
 @media (max-width: 480px) {
     #appSplash .door-scene { width: min(76vw, 330px) !important; height: min(45vh, 390px) !important; top: 19% !important; }
-    #appSplash .door-splash-logo { width: min(38vw, 104px) !important; }
+    #appSplash .door-splash-logo { width: min(38vw, 104px) !important; max-width: 104px !important; }
 }
 </style>
 
@@ -171,31 +192,17 @@ html.skip-splash #appSplash { display: none !important; opacity: 0 !important; v
             <img src="./logo.png" alt="INV WHY Real Estate" class="door-splash-logo">
         </div>
         <div class="door-scene" aria-hidden="true">
+            <div class="door-city"></div>
+            <div class="door-frame"></div>
             <div class="door-panel door-left"></div>
             <div class="door-panel door-right"></div>
-            <div class="door-frame"></div>
-            <div class="door-city"></div>
             <div class="door-floor"></div>
         </div>
         <div class="door-splash-content">
             <div class="door-splash-title">I N V&nbsp;&nbsp; W H Y</div>
             <div class="door-splash-subtitle">R E A L&nbsp;&nbsp; E S T A T E</div>
             <p class="door-splash-loading">Loading...</p>
-            <div class="door-splash-progress" aria-hidden="true">
-                <span></span>
-            </div>
-        </div>
-    </div>
-
-<div class="glass-splash-card">
-            <img src="./logo.png" alt="INV WHY Real Estate" class="glass-splash-logo">
-            <div class="glass-splash-line" aria-hidden="true"></div>
-            <p class="glass-splash-loading">Loading...</p>
-            <div class="glass-splash-dots" aria-hidden="true">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
+            <div class="door-splash-progress" aria-hidden="true"><span></span></div>
         </div>
     </div>
 
