@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script id="skip-properties-splash">
+  if (window.location.hash === "#offplan") {
+    document.documentElement.classList.add("skip-splash");
+  }
+</script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inv Why Real Estate | Home</title>
@@ -11,6 +17,8 @@
     <link rel="apple-touch-icon" href="./icon-192.png">
 
 <style id="critical-splash-style">
+html.skip-splash #appSplash { display: none !important; opacity: 0 !important; visibility: hidden !important; pointer-events: none !important; }
+
 #appSplash.glass-splash {
     position: fixed !important;
     inset: 0 !important;

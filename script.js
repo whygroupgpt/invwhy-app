@@ -1095,6 +1095,11 @@ if ('serviceWorker' in navigator) {
     const splash = document.getElementById('appSplash');
     if (!splash) return;
 
+    if (window.location.hash === '#offplan') {
+        splash.remove();
+        return;
+    }
+
     const start = performance.now();
     const minDisplayTime = 1000;
     let hidden = false;
