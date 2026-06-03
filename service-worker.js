@@ -1,4 +1,4 @@
-const CACHE_NAME = 'inv-why-pwa-splash-v9';
+const CACHE_NAME = 'inv-why-pwa-splash-fix-v10';
 
 const APP_SHELL = [
   './',

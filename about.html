@@ -9,6 +9,91 @@
     <link rel="manifest" href="./manifest.json">
     <meta name="theme-color" content="#000000">
     <link rel="apple-touch-icon" href="./icon-192.png">
+
+<style id="critical-splash-style">
+#appSplash {
+    position: fixed !important;
+    inset: 0 !important;
+    z-index: 99999 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background:
+        radial-gradient(circle at 50% 38%, rgba(160, 0, 0, 0.16), transparent 34%),
+        radial-gradient(circle at 50% 100%, rgba(120, 0, 0, 0.28), transparent 42%),
+        linear-gradient(180deg, #050505 0%, #090909 48%, #000000 100%) !important;
+    overflow: hidden !important;
+    opacity: 1;
+    visibility: visible;
+    transition: opacity .75s ease, visibility .75s ease;
+}
+#appSplash.hide {
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+}
+#appSplash .app-splash-inner {
+    position: relative !important;
+    z-index: 2 !important;
+    width: min(82vw, 420px) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+    transform: translateY(-12px) !important;
+}
+#appSplash .app-splash-logo {
+    width: min(44vw, 185px) !important;
+    max-height: 185px !important;
+    object-fit: contain !important;
+    margin-bottom: 34px !important;
+    filter: drop-shadow(0 16px 38px rgba(180, 0, 0, 0.26)) !important;
+}
+#appSplash .app-splash-title {
+    color: #ffffff !important;
+    font-size: clamp(1.5rem, 5vw, 2.45rem) !important;
+    font-weight: 800 !important;
+    letter-spacing: .42em !important;
+    margin-left: .42em !important;
+}
+#appSplash .app-splash-subtitle {
+    margin-top: 12px !important;
+    color: #ff3131 !important;
+    font-size: clamp(.8rem, 2.6vw, 1.05rem) !important;
+    font-weight: 800 !important;
+    letter-spacing: .52em !important;
+    margin-left: .52em !important;
+}
+#appSplash .app-splash-progress {
+    position: relative !important;
+    width: min(72vw, 330px) !important;
+    height: 8px !important;
+    margin-top: 44px !important;
+    border-radius: 999px !important;
+    overflow: hidden !important;
+    background: rgba(255,255,255,.16) !important;
+}
+#appSplash .app-splash-progress span {
+    position: absolute !important;
+    inset: 0 auto 0 0 !important;
+    width: 45% !important;
+    border-radius: inherit !important;
+    background: linear-gradient(90deg, #7a0000 0%, #ff3838 68%, #ffffff 100%) !important;
+    box-shadow: 0 0 22px rgba(255,49,49,.62) !important;
+    animation: criticalSplashProgress 1.35s cubic-bezier(.4,0,.2,1) infinite !important;
+}
+#appSplash .app-splash-loading {
+    margin-top: 22px !important;
+    color: rgba(255,255,255,.66) !important;
+    font-size: 1rem !important;
+}
+@keyframes criticalSplashProgress {
+    0% { transform: translateX(-115%); }
+    52% { transform: translateX(90%); }
+    100% { transform: translateX(240%); }
+}
+</style>
+
 </head>
 <body>
     <div id="appSplash" class="app-splash" aria-label="Loading INV WHY Real Estate">

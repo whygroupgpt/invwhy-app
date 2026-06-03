@@ -1084,31 +1084,32 @@ if ('serviceWorker' in navigator) {
 
 
 
+
+
+
 // ==================== DARK PREMIUM SPLASH LOADER ====================
 (() => {
     const splash = document.getElementById('appSplash');
     if (!splash) return;
 
     const start = performance.now();
-    const minDisplayTime = 1150;
+    const minDisplayTime = 900;
+    let hidden = false;
 
     const hideSplash = () => {
+        if (hidden) return;
+        hidden = true;
+
         const elapsed = performance.now() - start;
         const delay = Math.max(0, minDisplayTime - elapsed);
 
         window.setTimeout(() => {
             splash.classList.add('hide');
-            window.setTimeout(() => {
-                splash.remove();
-            }, 850);
+            window.setTimeout(() => splash.remove(), 850);
         }, delay);
     };
 
-    if (document.readyState === 'complete') {
-        hideSplash();
-    } else {
-        window.addEventListener('load', hideSplash, { once: true });
-        window.setTimeout(hideSplash, 3200);
-    }
+    window.addEventListener('load', hideSplash, { once: true });
+    window.setTimeout(hideSplash, 2600);
 })();
 // ==================== END DARK PREMIUM SPLASH LOADER ====================
