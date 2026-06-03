@@ -1040,11 +1040,44 @@ if (homeHero) {
 }
 
 
-// ==================== PWA SERVICE WORKER REGISTRATION ====================
-if ("serviceWorker" in navigator) {
-    window.addEventListener("load", () => {
-        navigator.serviceWorker.register("service-worker.js").catch(error => {
-            console.warn("Service worker registration failed:", error);
+// ==================== NEWS TICKER CONTROLS ====================
+(function initNewsTicker() {
+    const strips = document.querySelectorAll('[data-news-strip]');
+    strips.forEach(strip => {
+        const track = strip.querySelector('[data-news-track]');
+        if (!track || track.dataset.ready === 'true') return;
+
+        const originalItems = Array.from(track.children);
+        originalItems.forEach(item => track.appendChild(item.cloneNode(true)));
+        track.dataset.ready = 'true';
+
+        const resetAnimation = () => {
+            track.style.animation = 'none';
+            track.offsetHeight;
+            track.style.animation = '';
+        };
+
+        strip.querySelector('[data-news-next]')?.addEventListener('click', () => {
+            if (track.firstElementChild) track.appendChild(track.firstElementChild);
+            resetAnimation();
         });
+
+        strip.querySelector('[data-news-prev]')?.addEventListener('click', () => {
+            if (track.lastElementChild) track.insertBefore(track.lastElementChild, track.firstElementChild);
+            resetAnimation();
+        });
+
+        strip.querySelector('[data-news-toggle]')?.addEventListener('click', event => {
+            const isPaused = strip.classList.toggle('is-paused');
+            event.currentTarget.textContent = isPaused ? '▶' : 'Ⅱ';
+            event.currentTarget.setAttribute('aria-label', isPaused ? 'Play news' : 'Pause news');
+        });
+    });
+})();
+
+// Register PWA service worker when supported
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+        navigator.serviceWorker.register('service-worker.js').catch(() => {});
     });
 }
