@@ -1,8 +1,0 @@
-[{
-      "relation": ["delegate_permission/common.handle_all_urls"],
-      "target": {
-        "namespace": "android_app",
-        "package_name": "dev.pages.invwhy_app.twa",
-        "sha256_cert_fingerprints": ["4B:0A:10:37:AA:A9:1C:15:43:BE:E8:AE:93:91:96:B3:1A:59:18:BA:FD:84:65:E5:DF:BA:52:41:F5:A5:F2:82"]
-      }
-    }]
